@@ -1,0 +1,16 @@
+
+# --- Spyder specific (For your partner) ---
+.spyderproject
+.spyproject
+.spyder/
+
+# --- PyCharm specific (For you) ---
+.idea/
+*.iml
+
+# --- Python & Data (For both) ---
+__pycache__/
+venv/
+*.csv
+*.xlsx
+data/
