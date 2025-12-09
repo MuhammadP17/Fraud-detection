@@ -1,5 +1,4 @@
 import os
-
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -10,6 +9,8 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
+#Makes sure new data is generated for testing purposes in each run.
+np.random.seed(0)
 
 
 #Import dataset and check properties.
