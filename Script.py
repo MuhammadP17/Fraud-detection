@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
+from sklearn.preprocessing import RobustScaler
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
+
 
 #Makes sure new data is generated for testing purposes in each run.
 np.random.seed(0)
@@ -26,13 +30,27 @@ print(df.isnull().sum().max())
 #Check dataset for imbalance
 sns.countplot(x='Class', data=df, palette='Set3')
 plt.title("Count by Class (Fraud = 1)")
+
+#Check the distributions of each variable.
+df.hist(bins=20)
 plt.show()
 
 
-#Check for and remove outliers.
+#Scale variables for better model performance and accuracy.
+scalar = RobustScaler()
+df['r_amount'] = scalar.fit_transform(df[['Amount']])
+df['r_time'] = scalar.fit_transform(df[['Time']])
+
+df.drop(['Amount', 'Time'], axis=1, inplace=True)
 
 
-#Need to make the dataset balanced to make an accurate enough model.
+#Now split original dataset
+X = df.drop(['Class'], axis=1)
+y = df['Class']
+
+
+
+
 
 
 #Also need to remove outliers for better model efficiency.
