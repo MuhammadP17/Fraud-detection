@@ -1,7 +1,10 @@
 import os
+from collections import Counter
+
 import pandas as pd
 import numpy as np
 import matplotlib
+
 if 'PYCHARM_HOSTED' in os.environ:
     matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -10,7 +13,8 @@ import warnings
 warnings.filterwarnings('ignore')
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import StratifiedKFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_classification
 
 
 #Makes sure new data is generated for testing purposes in each run.
@@ -36,24 +40,36 @@ df.hist(bins=20)
 plt.show()
 
 
-#Scale variables for better model performance and accuracy.
-scalar = RobustScaler()
-df['r_amount'] = scalar.fit_transform(df[['Amount']])
-df['r_time'] = scalar.fit_transform(df[['Time']])
-
-df.drop(['Amount', 'Time'], axis=1, inplace=True)
-
-
 #Now split original dataset
 X = df.drop(['Class'], axis=1)
 y = df['Class']
 
+#DO NOT SCALE VARIABLES FIRST, THIS CAUSES DATA LEAKING.
+#Split the dataset
+
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=0, stratify=y, shuffle=True)
+
+X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=0, stratify=y_temp, shuffle=True)
+
+
+#Now we can scale and transform the variables.
+
+scalar = RobustScaler()
+
+scalar.fit(X_train)
+
+X_train = scalar.transform(X_train)
+X_val = scalar.transform(X_val)
+X_test = scalar.transform(X_test)
+
+#How do we replace the columns??
+
+#Create the balanced data sample
 
 
 
 
 
-#Also need to remove outliers for better model efficiency.
 
 #Then need to split the data into a training and testing set respectively.
 
