@@ -99,14 +99,14 @@ print(classification_report(y_val, y_pred))
 
 
 #Export all datasets to csv for more machine learning
-X_train.to_csv('X_train.csv', index=False)
-X_val.to_csv('X_val.csv', index=False)
-X_test.to_csv('X_test.csv', index=False)
-y_train.to_csv('y_train.csv', index=False)
-y_val.to_csv('y_val.csv', index=False)
-y_test.to_csv('y_test.csv', index=False)
-X_res.to_csv('X_train_balanced.csv', index=False)
-y_res.to_csv('y_train_balanced.csv', index=False)
+# X_train.to_csv('X_train.csv', index=False)
+# X_val.to_csv('X_val.csv', index=False)
+# X_test.to_csv('X_test.csv', index=False)
+# y_train.to_csv('y_train.csv', index=False)
+# y_val.to_csv('y_val.csv', index=False)
+# y_test.to_csv('y_test.csv', index=False)
+# X_res.to_csv('X_train_balanced.csv', index=False)
+# y_res.to_csv('y_train_balanced.csv', index=False)
 
 
 
