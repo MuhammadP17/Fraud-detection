@@ -12,14 +12,10 @@ warnings.filterwarnings('ignore')
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.datasets import make_classification
 from imblearn.under_sampling import RandomUnderSampler
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
 np.random.seed(0)
-
-
-#******************************************
-#EDA, Preprocessing and Standard Benchmark
-#******************************************
 
 
 #Import dataset and check properties.
@@ -50,7 +46,6 @@ df.hist(bins=20)
 plt.show()
 
 
-#DO NOT SCALE VARIABLES FIRST, THIS CAUSES DATA LEAKING.
 #Split the dataset
 X = df.drop(['Class'], axis=1)
 y = df['Class']
@@ -78,21 +73,40 @@ print('Initial training dataset shape %s' % Counter(y))
 rus = RandomUnderSampler(random_state=0, sampling_strategy='majority', replacement=False)
 X_res, y_res = rus.fit_resample(X_train, y_train)
 print('Training dataset shape %s' % Counter(y_res))
-X_res = pd.DataFrame(X_res, columns=cols, index=X_train.index)
+X_res = pd.DataFrame(X_res, columns=cols)
 
 
 #Check correlations between variables
+original_corr = df.corr()
+sns.heatmap(original_corr, cmap='coolwarm_r')
+plt.title("Correlation Heatmap from original dataset")
+plt.show()
+
 sub_corr = X_res.corr()
 sns.heatmap(sub_corr, cmap='coolwarm_r')
 plt.title("Correlation Heatmap from subsample")
 plt.show()
 
 
-
-
-
 #Create the benchmark to beat.
+print("Logistic regression benchmarks: ")
+model = LogisticRegression()
+model.fit(X_res, y_res)
+y_pred = model.predict(X_val)
 
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
+
+
+#Export all datasets to csv for more machine learning
+X_train.to_csv('X_train.csv', index=False)
+X_val.to_csv('X_val.csv', index=False)
+X_test.to_csv('X_test.csv', index=False)
+y_train.to_csv('y_train.csv', index=False)
+y_val.to_csv('y_val.csv', index=False)
+y_test.to_csv('y_test.csv', index=False)
+X_res.to_csv('X_train_balanced.csv', index=False)
+y_res.to_csv('y_train_balanced.csv', index=False)
 
 
 
