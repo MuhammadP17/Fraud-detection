@@ -1,0 +1,55 @@
+Model Performance Metrics
+
+Model: Logistic Regression
+Accuracy: 0.9993
+Precision: 0.8814
+Recall: 0.7027
+F1 Score: 0.7820
+Confusion Matrix:
+ [[42641     7]
+ [   22    52]]
+
+Model: Random Forest Classifier
+Accuracy: 0.9994
+Precision: 0.9310
+Recall: 0.7297
+F1 Score: 0.8182
+Confusion Matrix:
+ [[42644     4]
+ [   20    54]]
+
+Model: Gradient Boosting Classifier
+Accuracy: 0.9993
+Precision: 0.9565
+Recall: 0.5946
+F1 Score: 0.7333
+Confusion Matrix:
+ [[42646     2]
+ [   30    44]]
+
+Model: Gaussian Naive Bayes
+Accuracy: 0.9775
+Precision: 0.0613
+Recall: 0.8378
+F1 Score: 0.1143
+Confusion Matrix:
+ [[41699   949]
+ [   12    62]]
+
+Model: KNeighbors Classifier
+Accuracy: 0.9995
+Precision: 0.9333
+Recall: 0.7568
+F1 Score: 0.8358
+Confusion Matrix:
+ [[42644     4]
+ [   18    56]]
+
+Model: Support Vector Machine
+Accuracy: 0.9994
+Precision: 0.9800
+Recall: 0.6622
+F1 Score: 0.7903
+Confusion Matrix:
+ [[42647     1]
+ [   25    49]]
