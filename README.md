@@ -15,9 +15,13 @@ We simulated a production workflow by splitting the project into **Data Engineer
 ## 🛠 My Contribution: The Pipeline
 I built the foundation that allowed the models to learn effectively:
 
-* **EDA & Feature Analysis:** The dataset provided 28 anonymized PCA components (V1-V28). I identified that the only non-transformed features, **Time** and **Amount**, had different scales and required robust scaling to prevent model bias.
-* **Handling Imbalance:** Implemented **Random Under Sampling** to address the extreme 0.17% fraud ratio, creating a balanced training set for the models.
-* **Benchmarking:** Trained a Logistic Regression baseline. This set a "floor" for performance, ensuring that any complex model we built justified the computational cost.
+* **EDA & Preprocessing:** * Identified that the "Time" and "Amount" features contained outliers. Applied **RobustScaler** to handle these extreme values without distorting the data distribution.
+    * Compared correlation heatmaps between the original and balanced datasets to reveal hidden feature relationships.
+* **Handling Imbalance:** * Implemented **Random Under Sampling (RUS)** to downsample the majority class.
+    * Created a perfectly balanced (50/50) training set to prevent model bias, while keeping the Validation and Test sets in their original imbalanced state for realistic evaluation.
+* **Rigorous Splitting:** * Designed a **Stratified Train/Val/Test split** (70/15/15). This ensured the rare fraud cases were evenly distributed across all three datasets, preventing data leakage.
+* **Benchmarking:** * Trained a Logistic Regression baseline on the balanced data.
+    * **Result:** Proved that a simple linear model could achieve high recall, setting a strong "floor" for my partner's complex models.
 
 ---
 
