@@ -14,3 +14,7 @@ venv/
 *.csv
 *.xlsx
 
+Data.zip
+ML Data.zip
+*.zip
+
