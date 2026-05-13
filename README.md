@@ -42,7 +42,7 @@ This project simulated a production workflow by splitting responsibilities acros
 | Role | Contributor | Scope |
 |---|---|---|
 | **Data Engineering Lead** | Muhammad Patel | EDA, preprocessing, imbalance handling, stratified splitting, baseline model |
-| **Model Development** | [Partner Name] | Multi-model training, comparison, production model selection, API deployment |
+| **Model Development** | Thando Mothle | Multi-model training, comparison, production model selection, API deployment |
 
 ---
 
